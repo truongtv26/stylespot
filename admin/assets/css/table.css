@@ -1,0 +1,22 @@
+.thaotac {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+td {
+  line-height: 40px;
+}
+
+.btn1 input:nth-child(1) {
+  margin-right: 10px;
+}
+
+.btn2 {
+  padding-left: 30px;
+  padding-right: 30px;
+}
