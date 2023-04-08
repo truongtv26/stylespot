@@ -1,50 +1,5 @@
-<!-- End Header Area -->
 
-<!-- back to top-->
-<button id="myBtn" title="Lên đầu trang"><img src="./view/assets/img/back_to_top.png" title='lên đầu trang' width='20px'
-                                              height="20px"/></button>
-<!--end back to top-->
-<!-- Start Banner Area -->
-<section class="banner-area organic-breadcrumb">
-    <div class="container">
-        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-            <div class="col-first">
-                <br>
-                <h1>Giỏ hàng của tôi</h1>
-                <nav class="d-flex align-items-center">
-                    <a href="index.php">Trang chủ<span class="lnr lnr-arrow-right"></span></a>
-                    <a href="index.php?act=cart">Giỏ hàng của tôi</a>
-                </nav>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End Banner Area -->
-<?php
-if (empty($_SESSION['username'])){
-?>
 
-<form class="container" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="GET">
-    <div class="d-flex flex-column">
-        <input type="hidden" name="act" value="mycart">
-        <label for="keyword" class="form-label">Nhập số điện thoại hoặc email mua hàng</label>
-        <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Số điện thoại hoặc email">
-        <button class="primary-btn" style="border: none; border-radius: 2px; margin-top: 10px;">Tìm kiếm</button>
-    </div>
-</form>
-<?php
-}?>
-<?php
-if (isset($_GET['keyword']) && $_GET['keyword']) {
-    $key = $_GET['keyword'];
-    if(!empty($list_img_cart))
-        echo "<h2 style='text-align:center; margin-top: 5px'>Kết quả tìm kiếm cho '$key' </h2>";
-    else
-        echo "<h2 style='text-align:center; margin-top: 5px'>Không có đơn hàng nào khớp với '$key' </h2>";
-
-}
-?>
-<!--================Cart Area =================-->
 <section class="cart_area">
     <div class="container">
         <div class="cart_inner">
@@ -52,7 +7,6 @@ if (isset($_GET['keyword']) && $_GET['keyword']) {
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <td>STT</td>
                         <td colspan="4">
                             <div class="row">
                                 <div class="col-6">Sản phẩm</div>
@@ -69,12 +23,9 @@ if (isset($_GET['keyword']) && $_GET['keyword']) {
                     </thead>
                     <tbody>
                     <?php
-                    $stt = 0;
                     foreach ($list_img_cart as $item_cart):
-                        ++$stt;
                         ?>
                         <tr>
-                            <td><?= $stt ?></td>
                             <td colspan="4">
                                 <?php
                                 foreach ($item_cart as $bill_detail):
@@ -130,6 +81,3 @@ if (isset($_GET['keyword']) && $_GET['keyword']) {
         </div>
     </div>
 </section>
-<!--================End Cart Area =================-->
-
-</body>

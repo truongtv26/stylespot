@@ -11,7 +11,7 @@ function insert_bill_user($username, $address, $phone)
 }
 function checkuser($username, $password)
 {
-  $sql = "select *from user where username='" . $username . "' and password='" . $password . "'";
+  $sql = "SELECT * FROM user WHERE username='" . $username . "' AND password='" . $password . "'";
   $user = pdo_query_one($sql);
   return $user;
 }

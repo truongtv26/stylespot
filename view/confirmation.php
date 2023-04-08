@@ -35,7 +35,7 @@
 						<h4>Thông tin đơn hàng</h4>
 						<ul class="list">
 							<li><a href="#"><span>Mã đơn </span>: BILL-<?= $bill_id ?> </a></li>
-							<li><a href="#"><span>Ngày đặt hàng</span> : <?= $date ?></a></li>
+							<li><a href="#"><span>Ngày đặt hàng</span> : <?= $ngaydathang ?></a></li>
 							<li><a href="#"><span>Tổng tiền</span> : <?= $total_money ?> $</a></li>
 							<li><a href="#"><span>Thanh toán</span> : <?= $pttt ?></a></li>
 						</ul>
