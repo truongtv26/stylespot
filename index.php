@@ -153,7 +153,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                     if ($mail->send()) {
                         echo '
                         <script>
-                        alert("Đã gửi mail nhận lại mật khẩu!");
+                        alert("Mật khẩu của bạn đã được gửi tới email");
                         window.location.href="index.php?act=login";
                         </script>';
                     } else {
@@ -364,7 +364,8 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             include './view/mycart.php';
             break;
         case 'delete_bill':
-            require_once "./view/confirm_remove_bill.php";
+            update_bill('-1', $_GET['bill_id']);
+            header("Location:index.php?act=mycart");
             break;
         case 'detail':
             if (isset($_GET['product_id']) && ($_GET['product_id'] > 0)) {

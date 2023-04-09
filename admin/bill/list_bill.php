@@ -103,8 +103,12 @@
                     $stt = "đang xử lý";
                   } elseif ($status == 2) {
                     $stt = "đang giao hàng";
-                  } else {
+                  } elseif($status == 3) {
                     $stt = "Đã Hoàn thành";
+                  } elseif($status == -1) {
+                    $stt = "Yêu cầu hủy đơn hàng";
+                  } elseif($status == -2) {
+                    $stt = "Đã hủy đơn hàng";
                   }
                   if ($pttt == 0) {
                     $ptdh = "Thanh toán khi nhận";

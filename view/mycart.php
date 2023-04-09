@@ -105,18 +105,22 @@ if (isset($_GET['keyword']) && $_GET['keyword']) {
                             <td class="font-weight-bold d-flex flex-column justify-content-end align-items-center">
                                 <?php
                                 if ($status == 0) {
-
-                                    echo "<p>Chờ xác nhận</p>";
-                                    echo "<a style='border-radius: .5rem;' class='danger-btn text-nowrap' onclick=\"return confirm('Xác nhận hủy đơn hàng')\" href='index.php?act=delete_bill&bill_id=$bill_id''>Hủy đơn hàng</a>";
-
-                                } else if ($status == 1)
-                                    echo "<p>Đang xử lý</p>";
+                                    echo "<span class='text-success'>Chờ xác nhận</span>";
+                                    if (!empty($_SESSION['username']))
+                                        echo "<a style='border-radius: .5rem;' class='danger-btn text-nowrap' onclick=\"return confirm('Xác nhận hủy đơn hàng')\" href='index.php?act=delete_bill&bill_id=$bill_id''>Hủy đơn hàng</a>";
+                                }
+                                else if ($status == 1)
+                                    echo "<span class='text-success'>Đang xử lý</span>";
                                 else if ($status == 2)
-                                    echo "<p>Đang giao hàng</p>";
+                                    echo "<span class='text-success'>Đang giao hàng</span>";
                                 else if ($status == 3) {
-                                    echo "<p>Đã hoàn thành</p>";
+                                    echo "<span class='text-success'>Đã hoàn thành</span>";
                                     echo "<a style='border-radius: .5rem;' class='primary-btn text-nowrap' href='index.php?act=detail&product_id=$product_id'>Đánh giá</a>";
                                 }
+                                else if ($status == -1)
+                                    echo "<span class='text-danger'>Yêu cầu hủy đơn hàng</span>";
+                                else if ($status == -2)
+                                    echo "<span class='text-danger'>Đơn hàng đã được hủy</span>";
 
                                 ?>
                             </td>

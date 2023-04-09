@@ -99,6 +99,7 @@
         <div class="table-responsive">
           <table class="table text-center table-bordered table1">
             <thead>
+              <th>Tháng</th>
               <th>Sản phẩm</th>
               <th>Số lượng đặt hàng</th>
             </thead>
@@ -108,8 +109,9 @@
                 extract($bill);
                 echo '
               <tr>
+                <td>'.$month.'</td>
                 <td>' . $product_name . '</td>
-                <td>' . $best_seller . '</td>
+                <td>' . $total_quantity . '</td>
               </tr>
               ';
               }

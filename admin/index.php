@@ -378,7 +378,7 @@ if (isset($_GET['act'])) {
         case 'list_statistical':
             $count_bill = count_bill();
             $listthongke = load_all_statistical();
-            $product_best_seller = product_best_seller();
+            $product_best_seller = best_selling_by_month();
             include './statistical/list_statistical.php';
             break;
         case 'detail':
