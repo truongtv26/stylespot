@@ -140,7 +140,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                     $mail->Subject = "Forgot Password";
                     //Set sender email
                     $mail->setFrom('stylespot26@gmail.com');
-                    //Enable HTML besneaker1@gmail.com
+                    //Enable HTML 
                     $mail->isHTML(true);
                     //Attachment
                     // $mail->addAttachment('img/attachment.png');
