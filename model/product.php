@@ -62,13 +62,13 @@ function delete_product($product_id)
     $sql = "delete  from product where product_id=" . $_GET['product_id'];
     $a = pdo_execute($sql);
     if ($sql) {
-        $product_id = $a['product_id'];
-
         $sql = "delete from size where product_id=" . $_GET['product_id'];
         pdo_execute($sql);
     }
     return $sql;
 }
+
+
 function  update_product($product_id, $product_name, $price, $img, $mo_ta, $number_of_view, $categori_id)
 {
     $sql = "DELETE FROM `size` WHERE `product_id` =" . $product_id;

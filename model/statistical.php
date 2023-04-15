@@ -8,7 +8,9 @@ function load_all_statistical()
 
 function count_bill()
 {
-    $sql = "SELECT bill.ngaydathang, COUNT(bill.bill_id) as amount_bill, SUM(bill.total_money) as total_bill FROM bill GROUP BY bill.ngaydathang ORDER BY bill.ngaydathang DESC";
+    $sql = "SELECT bill.ngaydathang, COUNT(bill.bill_id) as amount_bill, 
+       SUM(bill.total_money) as total_bill 
+FROM bill GROUP BY bill.ngaydathang ORDER BY bill.ngaydathang DESC";
     $count_bill = pdo_query($sql);
     return $count_bill;
 }
@@ -27,9 +29,9 @@ function best_selling_by_month()
     FROM cart AS c 
     JOIN bill as b ON b.bill_id = c.bill_id
     GROUP BY c.product_id, EXTRACT(MONTH FROM STR_TO_DATE(b.ngaydathang, '%d/%m/%Y'))
+    ORDER BY total_quantity DESC
     ) as t
-GROUP BY t.month
-HAVING t.total_quantity =  MAX(t.total_quantity)";
+ORDER BY month DESC";
     return pdo_query($sql);
 }
 
@@ -42,7 +44,7 @@ EXTRACT(MONTH FROM STR_TO_DATE(b.ngaydathang, '%d/%m/%Y')) AS month,
 SUM(c.amount) AS total_quantity
 FROM
 cart AS c
-JOIN bill as b AS c ON b.bill_id = c.bill_id
+JOIN bill as b ON b.bill_id = c.bill_id
 GROUP BY
 c.product_id,
 EXTRACT(MONTH FROM STR_TO_DATE(b.ngaydathang, '%d/%m/%Y'))

@@ -106,9 +106,14 @@ if (isset($_GET['act'])) {
             if (isset($_GET['product_id']) && ($_GET['product_id'] > 0)) {
                 delete_product($_GET['product_id']);
             }
+            if (empty($_SESSION['kyw'][0]))
+                $_SESSION['kyw'][0] = "";
+            if (empty($_SESSION['categori'][0]))
+                $_SESSION['categori'][0] = 0;
             $count_product = count(loadall_product($_SESSION['kyw'][0], $_SESSION['categori'][0]));
             // echo $count_product;
             $page = ceil($count_product / 7);
+
             $list_product = loadall_product_admin($_SESSION['kyw'][0], $_SESSION['categori'][0], $page);
             include "./product/list_product.php";
             break;
@@ -355,12 +360,26 @@ if (isset($_GET['act'])) {
             include './bill/list_bill.php';
             break;
         case 'delete_bill':
-            if (isset($_GET['bill_id'])) {
-                $bill_id = $_GET['bill_id'];
-                delete_bill($bill_id);
+            if (isset($_POST['search_bill']) && ($_POST['search_bill'])) {
+                $kyw = $_POST['kyw'];
+                // $bill_id = $_POST['bill_id'];
+            } else {
+                $kyw = '';
+                // $bill_id = 0;
             }
-            $listbill = load_all_bill();
-            include './bill/list_bill.php';
+
+            $listbill = load_all_bill_delete($kyw);
+            include "bill/list_bill_delete.php";
+            break;
+        case 'confirm_delete_bill':
+            update_bill('-2', $_GET['id']);
+            $thongbao = '<span id="mess">Hủy đơn hàng thành công</span>';
+            include "bill/list_bill_delete.php";
+            break;
+        case 'confirm_update_bill':
+            update_bill('1', $_GET['id']);
+            $thongbao = '<span id="mess">Đơn hàng đang được xử lý</span>';
+            include "bill/list_bill_delete.php";
             break;
         case 'detail_bill':
             $bill_id = $_GET['id'];
@@ -378,7 +397,12 @@ if (isset($_GET['act'])) {
         case 'list_statistical':
             $count_bill = count_bill();
             $listthongke = load_all_statistical();
-            $product_best_seller = best_selling_by_month();
+            $product_best_seller = array_reduce(best_selling_by_month(), function ($result, $item){
+                $result[$item['month']][] = $item;
+                return $result;
+            }, array());
+
+
             include './statistical/list_statistical.php';
             break;
         case 'detail':

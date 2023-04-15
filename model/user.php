@@ -75,7 +75,7 @@ function getUser($field = '', $user_id) {
     if (empty($field))
         $sql .= "SELECT * FROM user";
     else
-        $sql .= "SELECT $field FROM usert";
+        $sql .= "SELECT $field FROM user";
 
     $sql .= " WHERE user_id = '$user_id'";
 

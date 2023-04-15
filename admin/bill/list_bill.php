@@ -68,6 +68,7 @@
             </select> -->
             <div class="thaotac">
               <a href="index.php?act=add_bill"><input class="btn btn-primary" type="button" value="Thêm đơn hàng"></a>
+              <a href="index.php?act=delete_bill"><input class="btn btn-primary" type="button" value="Đơn hàng yêu cầu hủy"></a>
             </div>
             <div class="search1 d-flex">
               <input type="text" name="kyw" id="" class="form-control" placeholder="Search..." style="width:260px" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search...'">
@@ -124,7 +125,16 @@
                     <td> <?php echo $ngaydathang ?></td>
                     <td><?php echo $ptdh ?></td>
                     <td><?php echo $stt ?></td>
-                    <td class="btn1"><a href="index.php?act=detail_bill&id=<?php echo $bill_id ?>"><input type="button" class="btn btn-gradient-primary btn2" name="detail" value="Detail"></a></a><a href="index.php?act=update_bill&id=<?php echo $bill_id ?>"><input type="button" class="btn btn-gradient-primary btn2" value="Update"></a>
+                    <td class="btn1">
+                        <a href="index.php?act=detail_bill&id=<?php echo $bill_id ?>">
+                            <input type="button" class="btn btn-gradient-primary btn2" name="detail" value="Detail">
+                        </a></a>
+                        <?php
+                        if ($status != -2)
+                            echo "<a href='index.php?act=update_bill&id=$bill_id'>
+                        <input type='button' class='btn btn-gradient-primary btn2' value='Update'>
+                        </a>";
+                        ?>
                     </td>
                   </tr>
                 <?php

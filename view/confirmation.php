@@ -44,7 +44,7 @@
 				<div class="col-lg-4">
 					<div class="details_item">
 						<?php
-						extract($_SESSION['username'] ?? $_SESSION['payment_info']);
+						extract($_SESSION['payment_info']);
 						?>
 						<h4>Thông tin khách hàng</h4>
 						<ul class="list">
@@ -88,7 +88,12 @@
 							<?php
 							}
 							?>
-
+                            <?php
+                                $total_money = 0;
+                                foreach ($_SESSION['fake_cart'] as $value){
+                                    $total_money += $value[2] * $value[4];
+                                }
+                            ?>
 							<tr>
 								<td>
 									<h4>Tổng tiền</h4>
@@ -97,7 +102,7 @@
 									<h5></h5>
 								</td>
 								<td>
-									<p> $ <?= $total_money - 50 ?> </p>
+									<p> $ <?= $total_money ?> </p>
 								</td>
 							</tr>
 							<tr>
@@ -119,9 +124,10 @@
 									<h5></h5>
 								</td>
 								<td>
-									<p> $ <?= $total_money ?> </p>
+									<p> $ <?= $total_money + 50 ?> </p>
 								</td>
 							</tr>
+
 						</tbody>
 					</table>
 				</div>

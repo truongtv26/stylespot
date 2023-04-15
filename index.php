@@ -66,15 +66,14 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $password = $_POST['password'];
                 $address = $_POST['address'];
                 $avatar = $_FILES['avatar']['name'];
-                $target_dir = "../upload/";
+                $target_dir = "/upload/";
                 if (!empty($_FILES['avatar']['name'])) {
-                    $user_img_old = getUser('avartar', $user_id);
+                    $user_img_old = getUser('avatar', $user_id);
                     if (file_exists($user_img_old))
                         unlink($user_img_old);
 
                     $target_file = $target_dir . basename($_FILES['avatar']['name']);
-                    if (move_uploaded_file($_FILES['avatar']['tmp_name'], substr($target_file, 1))) {
-                    }
+                    move_uploaded_file($_FILES['avatar']['tmp_name'], substr($target_file, 1));
                 } else {
                     $target_file = '';
                 }
@@ -327,7 +326,6 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                         'code' => '00', 'message' => 'success', 'data' => $vnp_Url
                     );
                     if (isset($_POST['redirect'])) {
-
 
                         foreach ($_SESSION['fake_cart'] as $cart) {
                             insert_cart($_SESSION['username']['user_id'], $cart[2], $cart[4], $cart[0], $cart[5], $id_bill, $cart[1]);

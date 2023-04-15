@@ -9,13 +9,25 @@ function load_all_bill($kyw = "", $user_id = 0)
     if ($user_id > 0) {
         $sql .= " AND user_id ='" . $user_id . "' ";
     }
-    $sql .= " ORDER BY bill_id desc";
+    $sql .= " AND status != -1 ORDER BY bill_id desc";
+    $listbill = pdo_query($sql);
+    return $listbill;
+}
+function load_all_bill_delete($kyw = "", $user_id = 0)
+{
+    $sql = "SELECT * FROM bill WHERE 1";
+    if ($kyw != "") {
+        $sql .= " AND bill_id like '%" . $kyw . "%'";
+    }
+    if ($user_id > 0) {
+        $sql .= " AND user_id ='" . $user_id . "' ";
+    }
+    $sql .= " AND status = -1 ORDER BY bill_id desc";
     $listbill = pdo_query($sql);
     return $listbill;
 }
 function delete_bill($bill_id)
 {
-
     $sql = "DELETE FROM cart WHERE `bill_id` = {$bill_id}";
     pdo_execute($sql);
 
